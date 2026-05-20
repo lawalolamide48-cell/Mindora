@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "@fontsource/inter";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F8F8F4;
+  color: #111111;
+  font-family: "Inter", sans-serif;
+}
