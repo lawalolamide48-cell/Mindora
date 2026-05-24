@@ -1,26 +1,17 @@
-import Navbar from "../components/layout/Navbar";
-import HeroSection from "../components/home/HeroSection";
-import AboutSection from "../components/home/AboutSection";
-import StepsSection from "../components/home/StepsSection";
-import SelfCareSection from "../components/home/SelfCareSection";
-import Footer from "../components/layout/Footer";
+import HeroSection from "../Components/home/HeroSection";
+import AboutSection from "../Components/home/AboutSection";
+import StepsSection from "../Components/home/StepsSection";
+import SelfCareSection from "../Components/home/SelfCareSection";
+import Footer from "../layouts/Footer";
 
 const Home = () => {
   return (
-    <main className="min-h-screen bg-[#F8F8F4]">
-
-      <Navbar />
-
+    <main className="min-h-screen bg-white">
       <HeroSection />
-
       <AboutSection />
-
       <StepsSection />
-
       <SelfCareSection />
-
       <Footer />
-
     </main>
   );
 };

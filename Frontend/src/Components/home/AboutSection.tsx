@@ -1,76 +1,142 @@
+import brainImg from "../../assets/brain.png";
+
+const features = [
+  "Privacy",
+  "Accessibility",
+  "Emotional support",
+  "Safe AI-assisted conversations",
+];
+
 const AboutSection = () => {
   return (
-    <section className="w-full py-28 border-t border-[#E5E5E5]">
+    <section
+      id="about"
+      style={{
+        width: "100%",
+        background: "#ffffff",
+        padding: "96px 0",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "0 64px",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "80px",
+            alignItems: "center",
+          }}
+        >
 
-      <div className="max-w-[1280px] mx-auto px-6">
-
-        {/* SECTION TITLE */}
-        <p className="text-sm text-[#666666] mb-6">
-          About Mindora
-        </p>
-
-        {/* CONTENT */}
-        <div className="grid md:grid-cols-2 gap-20">
-
-          {/* LEFT */}
-          <div>
-
-            <h2 className="text-[48px] leading-[58px] font-semibold text-[#111111] tracking-[-1.5px]">
-
-              A safe, calm, and judgment-free space to talk.
-
-            </h2>
-
+          {/* LEFT — brain image in dark container */}
+          <div
+            style={{
+              borderRadius: "16px",
+              overflow: "hidden",
+              height: "340px",
+              background: "#000000",
+            }}
+          >
+            <img
+              src={brainImg}
+              alt="AI brain circuit"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </div>
 
-          {/* RIGHT */}
+          {/* RIGHT — text content */}
           <div>
 
-            <p className="text-lg leading-8 text-[#666666]">
+            {/* Heading */}
+            <h2
+              style={{
+                fontSize: "28px",
+                fontWeight: "700",
+                color: "#111111",
+                marginBottom: "20px",
+                letterSpacing: "-0.3px",
+              }}
+            >
+              About Mindora
+            </h2>
 
-              Mindora is an AI-powered anonymous support platform
-              designed to provide users with a safe, calm,
-              and judgment-free space to talk about emotional,
-              mental, and personal health concerns.
-
+            <p
+              style={{
+                fontSize: "15px",
+                lineHeight: "1.8",
+                color: "#444444",
+                marginBottom: "16px",
+              }}
+            >
+              Mindora is an AI-powered anonymous support platform designed to
+              provide users with a safe, calm, and judgment-free space to talk
+              about emotional, mental, and personal health concerns.
             </p>
 
-            <p className="mt-6 text-lg leading-8 text-[#666666]">
-
-              The platform combines conversational AI with
-              supportive wellness resources to help users
-              feel heard, supported, and guided whenever
+            <p
+              style={{
+                fontSize: "15px",
+                lineHeight: "1.8",
+                color: "#444444",
+              }}
+            >
+              The platform combines conversational AI with supportive wellness
+              resources to help users feel heard, supported, and guided whenever
               they need someone to talk to.
-
             </p>
 
-            {/* FEATURES */}
-            <div className="mt-10 flex flex-wrap gap-4">
-
-              <div className="border border-[#E5E5E5] rounded-full px-5 py-3 text-sm">
-                Privacy
-              </div>
-
-              <div className="border border-[#E5E5E5] rounded-full px-5 py-3 text-sm">
-                Accessibility
-              </div>
-
-              <div className="border border-[#E5E5E5] rounded-full px-5 py-3 text-sm">
-                Emotional Support
-              </div>
-
-              <div className="border border-[#E5E5E5] rounded-full px-5 py-3 text-sm">
-                Safe AI Conversations
-              </div>
-
+            {/* Features — teal dot + dark text, 2 columns */}
+            <div
+              style={{
+                marginTop: "32px",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "16px 24px",
+              }}
+            >
+              {features.map((f) => (
+                <div
+                  key={f}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "50%",
+                      background: "#1A9E8D",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: "14px",
+                      color: "#333333",
+                    }}
+                  >
+                    {f}
+                  </span>
+                </div>
+              ))}
             </div>
 
           </div>
 
         </div>
-
       </div>
-
     </section>
   );
 };

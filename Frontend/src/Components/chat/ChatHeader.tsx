@@ -1,39 +1,39 @@
-type Props = {
-  darkMode: boolean;
-  setDarkMode: (value: boolean) => void;
-};
+import { COLORS } from "../../constants/colors";
 
-const ChatHeader = ({
-  darkMode,
-  setDarkMode,
-}: Props) => {
+const ChatHeader = () => {
   return (
     <header
-      className={`sticky top-0 z-20 border-b px-6 py-4 flex items-center justify-between backdrop-blur-md ${
-        darkMode
-          ? "bg-[#0f0f0f]/80 border-[#222]"
-          : "bg-white/80 border-gray-200"
-      }`}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "16px 40px",
+        backgroundColor: COLORS.background,
+        borderBottom: `1px solid ${COLORS.border}`,
+      }}
     >
-      <div>
-        <h2 className="font-semibold text-lg">
-          Mindora Assistant
-        </h2>
-
-        <p className="text-sm opacity-70">
-          Safe, calm, supportive AI conversations
-        </p>
-      </div>
+      <h2
+        style={{
+          fontSize: "20px",
+          fontWeight: 600,
+          color: COLORS.text,
+        }}
+      >
+        Mindora
+      </h2>
 
       <button
-        onClick={() => setDarkMode(!darkMode)}
-        className={`px-4 py-2 rounded-lg transition ${
-          darkMode
-            ? "bg-[#1f1f1f] hover:bg-[#2a2a2a]"
-            : "bg-gray-100 hover:bg-gray-200"
-        }`}
+        style={{
+          backgroundColor: COLORS.dangerBg,
+          color: COLORS.dangerText,
+          border: "none",
+          borderRadius: "999px",
+          padding: "9px 22px",
+          fontSize: "14px",
+          cursor: "pointer",
+        }}
       >
-        {darkMode ? "Light" : "Dark"}
+        End Chat
       </button>
     </header>
   );

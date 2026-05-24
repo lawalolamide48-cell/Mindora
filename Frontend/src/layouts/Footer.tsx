@@ -1,83 +1,139 @@
+import { useNavigate } from "react-router-dom";
+import logoImg from "../assets/logo.png";
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
-    <footer className="w-full border-t border-[#E5E5E5]">
+    <footer style={{ width: "100%" }}>
 
       {/* CTA SECTION */}
-      <div className="py-28">
+      <div
+        style={{
+          backgroundColor: "#ffffff",
+          paddingTop: "80px",
+          paddingBottom: "80px",
+          paddingLeft: "64px",
+          paddingRight: "64px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "860px",
+            margin: "0 auto",
+            backgroundColor: "#D4F5EF",
+            borderRadius: "28px",
+            padding: "80px 64px",
+            textAlign: "center",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "40px",
+              fontWeight: "700",
+              color: "#111111",
+              letterSpacing: "-0.5px",
+              lineHeight: "1.2",
+              marginBottom: "16px",
+            }}
+          >
+            Ready When You Are.
+          </h2>
 
-        <div className="max-w-[1280px] mx-auto px-6">
+          <p
+            style={{
+              fontSize: "15px",
+              color: "#666666",
+              lineHeight: "1.75",
+              maxWidth: "380px",
+              margin: "0 auto",
+            }}
+          >
+            No Pressure. No Commitment. Just A Safe Space
+            To Talk Through Whatever Is On Your Mind.
+          </p>
 
-          <div className="max-w-[760px]">
+          <button
+            onClick={() => navigate("/chat")}
+            style={{
+              marginTop: "32px",
+              backgroundColor: "#1A9E8D",
+              color: "white",
+              padding: "14px 40px",
+              borderRadius: "999px",
+              fontSize: "15px",
+              fontWeight: "500",
+              border: "none",
+              cursor: "pointer",
+              display: "inline-block",
+            }}
+          >
+            Start Anonymous Chat
+          </button>
+        </div>
+      </div>
 
-            {/* SMALL TEXT */}
-            <p className="text-sm text-[#666666] mb-6">
-              Ready when you are.
+      {/* FOOTER BAR */}
+      <div style={{ backgroundColor: "#EFEFEB" }}>
+        <div
+          style={{
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "40px 64px",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            gap: "32px",
+          }}
+        >
+
+          {/* LEFT — logo + tagline */}
+          <div>
+            <img
+              src={logoImg}
+              alt="Mindora"
+              style={{ height: "36px", width: "auto", marginBottom: "8px" }}
+            />
+            <p style={{ fontSize: "13px", color: "#888888" }}>
+              A Safe Space To Talk. Anonymous By Design.
             </p>
-
-            {/* TITLE */}
-            <h2 className="text-[56px] leading-[66px] font-semibold tracking-[-2px] text-[#111111]">
-
-              No pressure. No commitment.
-              Just a safe space to talk through
-              whatever is on your mind.
-
-            </h2>
-
-            {/* BUTTON */}
-            <button className="mt-10 bg-[#111111] text-white px-6 py-4 rounded-full text-sm font-medium hover:opacity-90 transition">
-
-              Start Anonymous Chat
-
-            </button>
-
           </div>
 
-        </div>
-
-      </div>
-
-      {/* BOTTOM FOOTER */}
-      <div className="border-t border-[#E5E5E5]">
-
-        <div className="max-w-[1280px] mx-auto px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-
-          {/* LEFT */}
-          <div className="flex flex-wrap gap-6 text-sm text-[#666666]">
-
-            <a href="#">About</a>
-
-            <a href="#">How It Works</a>
-
-            <a href="#">Resources</a>
-
-            <a href="#">Privacy</a>
-
+          {/* CENTER — nav links */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "40px",
+              paddingTop: "4px",
+            }}
+          >
+            <a href="#about" style={{ fontSize: "14px", color: "#666666", textDecoration: "none" }}>
+              About
+            </a>
+            <a href="#how-it-works" style={{ fontSize: "14px", color: "#666666", textDecoration: "none" }}>
+              How It Works
+            </a>
+            <a href="#resources" style={{ fontSize: "14px", color: "#666666", textDecoration: "none" }}>
+              Resources
+            </a>
+            <a href="#privacy" style={{ fontSize: "14px", color: "#666666", textDecoration: "none" }}>
+              Privacy
+            </a>
           </div>
 
-          {/* RIGHT */}
-          <div className="text-sm text-[#666666]">
-
-            © 2026 Mindora. All rights reserved.
-
-          </div>
-
-        </div>
-
-      </div>
-
-      {/* FINAL TEXT */}
-      <div className="pb-10">
-
-        <div className="max-w-[1280px] mx-auto px-6">
-
-          <p className="text-sm text-[#666666]">
-
-            A safe space to talk. Anonymous by design.
-
+          {/* RIGHT — copyright */}
+          <p
+            style={{
+              fontSize: "14px",
+              color: "#888888",
+              paddingTop: "4px",
+              whiteSpace: "nowrap",
+            }}
+          >
+            © 2026 Bolt. All Rights Reserved.
           </p>
 
         </div>
-
       </div>
 
     </footer>

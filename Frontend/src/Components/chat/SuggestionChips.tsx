@@ -1,3 +1,7 @@
+interface Props {
+  onSend: (text: string) => void;
+}
+
 const suggestions = [
   "I feel anxious",
   "I need support",
@@ -5,21 +9,34 @@ const suggestions = [
   "I’m overwhelmed with work",
 ];
 
-const SuggestionChips = () => {
+const SuggestionChips = ({ onSend }: Props) => {
   return (
-    <div className="flex flex-wrap gap-4 mt-12">
-
-      {suggestions.map((item) => (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "12px",
+        justifyContent: "center",
+      }}
+    >
+      {suggestions.map((item, index) => (
         <button
-          key={item}
-          className="border border-[#E5E5E5] bg-white rounded-full px-5 py-3 text-sm text-[#111111] hover:bg-[#111111] hover:text-white transition"
+          key={index}
+          onClick={() => onSend(item)}
+          style={{
+            border: "none",
+            borderRadius: "999px",
+            padding: "12px 18px",
+            backgroundColor: "#F8F8F8",
+            color: "#444444",
+            fontSize: "14px",
+            cursor: "pointer",
+            transition: "0.2s",
+          }}
         >
-
           {item}
-
         </button>
       ))}
-
     </div>
   );
 };

@@ -1,30 +1,58 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const ChatInput = ({ onSend }: any) => {
-  const [text, setText] = useState("");
+interface Props {
+  onSend: (text: string) => void;
+}
+
+const ChatInput = ({ onSend }: Props) => {
+  const [input, setInput] = useState("");
 
   const handleSend = () => {
-    onSend(text);
-    setText("");
+    if (!input.trim()) return;
+
+    onSend(input);
+    setInput("");
   };
 
   return (
-    <div className="flex items-center gap-2 bg-[#F6F6F2]">
-
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "white",
+        borderRadius: "999px",
+        padding: "10px 18px",
+        border: "1px solid #E6E6E1",
+        gap: "12px",
+      }}
+    >
       <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Message Mindora..."
-        className="flex-1 bg-white border border-[#E7E7E2] rounded-xl px-4 py-3 text-[14px] outline-none"
+        type="text"
+        placeholder="Share what’s on your mind..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        style={{
+          flex: 1,
+          border: "none",
+          outline: "none",
+          fontSize: "15px",
+          color: "#111111",
+        }}
       />
 
       <button
         onClick={handleSend}
-        className="bg-[#2F2F2F] text-white px-4 py-3 rounded-xl text-[13px] hover:bg-black transition"
+        style={{
+          border: "none",
+          borderRadius: "999px",
+          padding: "10px 18px",
+          backgroundColor: "#1A9E8D",
+          color: "white",
+          cursor: "pointer",
+        }}
       >
         Send
       </button>
-
     </div>
   );
 };

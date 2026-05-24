@@ -1,103 +1,180 @@
 const resources = [
   {
-    type: "Exercise",
+    type: "Exercises",
     title: "5-4-3-2-1 Grounding Technique",
     description:
       "Name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste.",
   },
-
   {
     type: "Article",
     title: "Understanding Panic Attacks",
     description:
       "Learn what happens during a panic attack and how to manage symptoms.",
   },
-
   {
-    type: "Exercise",
+    type: "Exercises",
     title: "Box Breathing Guide",
-    description:
-      "Inhale 4s hold 4s exhale 4s hold 4s. Repeat 4 times.",
+    description: "Inhale 4s · hold 4s · exhale 4s · hold 4s. Repeat 4 times.",
   },
-
   {
     type: "Article",
     title: "Building a Support Network",
     description:
       "How to reach out and build meaningful connections with others.",
   },
-
   {
-    type: "Exercise",
+    type: "Exercises",
     title: "Step Outside",
-    description:
-      "Two minutes of fresh air can shift the moment.",
+    description: "Two minutes of fresh air can shift the moment.",
   },
-
   {
     type: "Article",
     title: "Sleep Hygiene Checklist",
-    description:
-      "Practical tips to improve your sleep quality tonight.",
+    description: "Practical tips to improve your sleep quality tonight.",
   },
 ];
 
+const ExerciseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M22 12h-4l-3 9L9 3l-3 9H2"
+      stroke="#1A9E8D"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const ArticleIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <rect x="5" y="2" width="14" height="20" rx="2" stroke="#1A9E8D" strokeWidth="2" />
+    <path
+      d="M9 7h6M9 11h6M9 15h4"
+      stroke="#1A9E8D"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 const SelfCareSection = () => {
   return (
-    <section className="w-full py-28 border-t border-[#E5E5E5]">
-
-      <div className="max-w-[1280px] mx-auto px-6">
+    <section
+      id="resources"
+      style={{
+        width: "100%",
+        backgroundColor: "#ffffff",
+        paddingTop: "96px",
+        paddingBottom: "96px",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          paddingLeft: "64px",
+          paddingRight: "64px",
+        }}
+      >
 
         {/* HEADER */}
-        <div className="max-w-[700px]">
-
-          <p className="text-sm text-[#666666] mb-6">
+        <div style={{ textAlign: "center", marginBottom: "56px" }}>
+          <h2
+            style={{
+              fontSize: "34px",
+              fontWeight: "700",
+              color: "#111111",
+              letterSpacing: "-0.3px",
+              marginBottom: "12px",
+            }}
+          >
             Quick Self Care
-          </p>
-
-          <h2 className="text-[48px] leading-[58px] font-semibold tracking-[-1.5px] text-[#111111]">
-
-            Curated articles and exercises to help you navigate difficult moments.
-
           </h2>
-
+          <p style={{ fontSize: "15px", color: "#888888" }}>
+            Curated Articles And Exercises To Help You Navigate Difficult Moments.
+          </p>
         </div>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "20px",
+          }}
+        >
           {resources.map((item, index) => (
             <div
               key={index}
-              className="bg-white border border-[#E5E5E5] rounded-[28px] p-8 hover:shadow-sm transition"
+              style={{
+                backgroundColor: "#ffffff",
+                borderRadius: "20px",
+                padding: "28px",
+                border: "1px solid #eeeeee",
+                boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
+              }}
             >
+              {/* Icon + type */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  marginBottom: "20px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "8px",
+                    backgroundColor: "#D0F5EF",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  {item.type === "Exercises" ? <ExerciseIcon /> : <ArticleIcon />}
+                </div>
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "#1A9E8D",
+                  }}
+                >
+                  {item.type}
+                </span>
+              </div>
 
-              {/* TYPE */}
-              <p className="text-sm text-[#666666]">
-                {item.type}
-              </p>
-
-              {/* TITLE */}
-              <h3 className="mt-5 text-2xl font-semibold text-[#111111] leading-9">
-
+              <h3
+                style={{
+                  fontSize: "17px",
+                  fontWeight: "700",
+                  color: "#111111",
+                  lineHeight: "1.4",
+                  marginBottom: "8px",
+                }}
+              >
                 {item.title}
-
               </h3>
 
-              {/* DESCRIPTION */}
-              <p className="mt-5 text-[#666666] leading-7">
-
+              <p
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "1.65",
+                  color: "#666666",
+                }}
+              >
                 {item.description}
-
               </p>
-
             </div>
           ))}
-
         </div>
 
       </div>
-
     </section>
   );
 };

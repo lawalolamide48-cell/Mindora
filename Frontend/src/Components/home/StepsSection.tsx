@@ -2,17 +2,13 @@ const steps = [
   {
     number: "1",
     title: "Open the chat",
-    description:
-      "No sign-up required. Click and start talking instantly.",
+    description: "No sign-up required. Click and start talking instantly.",
   },
-
   {
     number: "2",
     title: "Share how you feel",
-    description:
-      "Tell Mindora what is on your mind. Everything stays private.",
+    description: "Tell Mindora what is on your mind. Everything stays private.",
   },
-
   {
     number: "3",
     title: "Get support",
@@ -23,62 +19,118 @@ const steps = [
 
 const StepsSection = () => {
   return (
-    <section className="w-full py-28 border-t border-[#E5E5E5]">
+    <section
+      id="how-it-works"
+      style={{
+        width: "100%",
+        background: "#1A9E8D",
+        padding: "100px 0",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "0 64px",
+        }}
+      >
 
-      <div className="max-w-[1280px] mx-auto px-6">
-
-        {/* TITLE */}
-        <div className="max-w-[700px]">
-
-          <p className="text-sm text-[#666666] mb-6">
+        {/* HEADER */}
+        <div style={{ textAlign: "center", marginBottom: "60px" }}>
+          <h2
+            style={{
+              fontSize: "36px",
+              fontWeight: "700",
+              color: "#ffffff",
+              letterSpacing: "-0.3px",
+              marginBottom: "12px",
+            }}
+          >
             How Mindora Works
-          </p>
-
-          <h2 className="text-[48px] leading-[58px] font-semibold tracking-[-1.5px] text-[#111111]">
-
-            Three simple steps to get the support you need.
-
           </h2>
-
+          <p
+            style={{
+              fontSize: "15px",
+              color: "rgba(255,255,255,0.75)",
+            }}
+          >
+            Three Simple Steps To Get The Support You Need.
+          </p>
         </div>
 
         {/* CARDS */}
-        <div className="grid md:grid-cols-3 gap-6 mt-16">
-
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: "24px",
+          }}
+        >
           {steps.map((step) => (
             <div
               key={step.number}
-              className="bg-white border border-[#E5E5E5] rounded-[28px] p-8 min-h-[260px]"
+              style={{
+                background: "#ffffff",
+                borderRadius: "24px",
+                padding: "48px 40px",
+                textAlign: "center",
+                minHeight: "280px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-
-              {/* NUMBER */}
-              <div className="w-12 h-12 rounded-full border border-[#E5E5E5] flex items-center justify-center text-lg font-medium">
-
-                {step.number}
-
+              {/* Teal circle number */}
+              <div
+                style={{
+                  width: "52px",
+                  height: "52px",
+                  borderRadius: "50%",
+                  background: "#1A9E8D",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "32px",
+                  flexShrink: 0,
+                }}
+              >
+                <span
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "20px",
+                    fontWeight: "700",
+                  }}
+                >
+                  {step.number}
+                </span>
               </div>
 
-              {/* TITLE */}
-              <h3 className="mt-10 text-2xl font-semibold text-[#111111]">
-
+              <h3
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "700",
+                  color: "#111111",
+                  marginBottom: "12px",
+                }}
+              >
                 {step.title}
-
               </h3>
 
-              {/* DESCRIPTION */}
-              <p className="mt-5 text-[#666666] leading-7">
-
+              <p
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "1.7",
+                  color: "#666666",
+                  maxWidth: "260px",
+                }}
+              >
                 {step.description}
-
               </p>
-
             </div>
           ))}
-
         </div>
 
       </div>
-
     </section>
   );
 };

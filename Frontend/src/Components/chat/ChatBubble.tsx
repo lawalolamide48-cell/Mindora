@@ -1,35 +1,35 @@
-type ChatBubbleProps = {
-  message: string;
-  sender: "user" | "ai";
-};
+import { Message } from "../../types/chat";
 
-const ChatBubble = ({
-  message,
-  sender,
-}: ChatBubbleProps) => {
+interface Props {
+  message: Message;
+}
+
+const ChatMessage = ({ message }: Props) => {
+  const isUser = message.sender === "user";
+
   return (
     <div
-      className={`flex ${
-        sender === "user"
-          ? "justify-end"
-          : "justify-start"
-      }`}
+      style={{
+        display: "flex",
+        justifyContent: isUser ? "flex-end" : "flex-start",
+      }}
     >
-
       <div
-        className={`max-w-[80%] rounded-[28px] px-6 py-5 text-[15px] leading-7 ${
-          sender === "user" ?
-            "bg-[#111111] text-white"
-            : "bg-white border border-[#E5E5E5] text-[#111111]"
-        }`}
+        style={{
+          maxWidth: "68%",
+          padding: "18px 22px",
+          borderRadius: "24px",
+          backgroundColor: isUser ? "#1A9E8D" : "white",
+          color: isUser ? "white" : "#4B4B4B",
+          lineHeight: "1.9",
+          fontSize: "15px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+        }}
       >
-
-        {message}
-
+        {message.text}
       </div>
-
     </div>
   );
 };
 
-export default ChatBubble;
+export default ChatMessage;
