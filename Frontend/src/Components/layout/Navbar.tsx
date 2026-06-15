@@ -10,24 +10,64 @@ const Navbar = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "16px 0",
+        padding: "16px 24px",
       }}
     >
       {/* LOGO */}
-      <img src={logoImg} alt="Mindora" style={{ height: "40px" }} />
+      <img
+        src={logoImg}
+        alt="Mindora"
+        onClick={() => navigate("/")}
+        style={{
+          height: "40px",
+          cursor: "pointer",
+        }}
+      />
 
       {/* LINKS */}
-      <nav style={{ display: "flex", gap: "40px" }}>
-        <a href="#about" style={{ color: "#555", textDecoration: "none" }}>
+      <nav
+        style={{
+          display: "flex",
+          gap: "40px",
+        }}
+      >
+        <a
+          href="#about"
+          style={{
+            color: "#555",
+            textDecoration: "none",
+          }}
+        >
           About
         </a>
-        <a href="#how-it-works" style={{ color: "#555", textDecoration: "none" }}>
+
+        <a
+          href="#how-it-works"
+          style={{
+            color: "#555",
+            textDecoration: "none",
+          }}
+        >
           How It Works
         </a>
-        <a href="#resources" style={{ color: "#555", textDecoration: "none" }}>
+
+        <a
+          href="#resources"
+          style={{
+            color: "#555",
+            textDecoration: "none",
+          }}
+        >
           Resources
         </a>
-        <a href="#privacy" style={{ color: "#555", textDecoration: "none" }}>
+
+        <a
+          href="#privacy"
+          style={{
+            color: "#555",
+            textDecoration: "none",
+          }}
+        >
           Privacy
         </a>
       </nav>
