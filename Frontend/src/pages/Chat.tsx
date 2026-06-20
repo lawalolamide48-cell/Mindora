@@ -1,90 +1,146 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import logoImg from "../assets/logo.png";
-import ChatInput from "../components/chat/ChatInput";
-import EmptyChatState from "../components/chat/EmptyChatState";
-
-interface Message {
-  role: "user" | "assistant";
-  content: string;
-}
+import ChatBubble from "../Components/chat/ChatBubble";
+import ChatInput from "../Components/chat/ChatInput";
+import EmptyChatState from "../Components/chat/EmptyChatState";
+import SuggestionChips from "../Components/chat/SuggestionChips";
+import type { Message } from "../types/chat";
 
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSend = async (text: string) => {
-    if (!text.trim()) return;
+    if (!text.trim() || isLoading) return;
 
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", content: text },
-    ]);
+    const userMessage: Message = {
+      id: crypto.randomUUID(),
+      role: "user",
+      content: text.trim(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setIsLoading(true);
 
     try {
       const res = await fetch("http://localhost:5000/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({
+          message: userMessage.content,
+          history: messages,
+        }),
       });
 
       const data = await res.json();
 
+      if (!res.ok) {
+        throw new Error(data.reply || "Cannot connect to backend");
+      }
+
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.reply },
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content: data.reply,
+        },
       ]);
     } catch (err) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Cannot connect to backend" },
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          content:
+            "I cannot connect to Mindora right now. Please make sure the backend server is running, then try again.",
+        },
       ]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const hasMessages = messages.length > 0;
+
   return (
-    <div className="w-full h-screen flex flex-col bg-[#EEF8F6]">
-
-      {/* CHAT AREA */}
-      <div className="flex-1 w-full flex flex-col overflow-hidden">
-
-        {/* MESSAGES OR EMPTY STATE */}
-        {messages.length === 0 ? (
-          <div className="flex-1 flex items-center justify-center px-6">
-            <EmptyChatState onSend={handleSend} />
-          </div>
+    <div
+      style={{
+        minHeight: "calc(100vh - 96px)",
+        display: "flex",
+        flexDirection: "column",
+        background: "#ffffff",
+      }}
+    >
+      <section
+        style={{
+          flex: "1 1 auto",
+          background:
+            "linear-gradient(180deg, #EEF8F6 0%, #EEF8F6 82%, #FFFFFF 82%)",
+        }}
+      >
+        {!hasMessages ? (
+          <EmptyChatState />
         ) : (
-          <div className="flex-1 overflow-y-auto px-6 py-8">
-            <div className="max-w-3xl mx-auto flex flex-col gap-3">
+          <div
+            style={{
+              maxWidth: "1640px",
+              margin: "0 auto",
+              padding: "140px 72px 96px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "88px",
+            }}
+          >
+            {messages.map((msg) => (
+              <ChatBubble key={msg.id} message={msg} />
+            ))}
 
-              {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`px-4 py-3 rounded-xl text-[15px] shadow-sm max-w-[75%] ${
-                    msg.role === "user"
-                      ? "ml-auto bg-[#DCF8F5]"
-                      : "mr-auto bg-white"
-                  }`}
-                >
-                  {msg.content}
-                </div>
-              ))}
+            {isLoading && (
+              <ChatBubble
+                message={{
+                  id: "loading",
+                  role: "assistant",
+                  content:
+                    "I am here with you. Thinking through a gentle response...",
+                }}
+              />
+            )}
+          </div>
+        )}
+      </section>
 
-            </div>
+      <section
+        style={{
+          background: "#ffffff",
+          padding: hasMessages ? "64px 24px 56px" : "72px 24px 56px",
+        }}
+      >
+        {!hasMessages && (
+          <div style={{ marginBottom: "96px" }}>
+            <SuggestionChips onSend={handleSend} />
           </div>
         )}
 
-        {/* INPUT (ALWAYS FIXED STRUCTURE) */}
-        <div className="w-full px-6 py-5 border-t border-[#DCEAE6]">
-          <div className="max-w-3xl mx-auto">
-            <ChatInput onSend={handleSend} />
-          </div>
-
-          <p className="text-center text-[13px] text-gray-500 mt-4">
-            Mindora is an AI companion, not a substitute for professional care.
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "1160px",
+            margin: "0 auto",
+          }}
+        >
+          <ChatInput onSend={handleSend} />
+          <p
+            style={{
+              textAlign: "center",
+              color: "#808080",
+              fontSize: "18px",
+              marginTop: "36px",
+            }}
+          >
+            Mindora Is An AI Companion, Not A Substitute For Professional Care.
           </p>
         </div>
-
-      </div>
+      </section>
     </div>
   );
 };

@@ -1,92 +1,90 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import logoImg from "../../assets/logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isChatPage = location.pathname === "/chat";
+
+  const handleHomeSection = (hash: string) => {
+    if (location.pathname !== "/") {
+      navigate(`/${hash}`);
+      return;
+    }
+
+    window.location.hash = hash;
+  };
 
   return (
-    <header
+    <div
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "16px 24px",
+        width: "100%",
+        maxWidth: "1280px",
+        margin: "0 auto",
+        padding: "24px 64px",
+        minHeight: "96px",
       }}
     >
-      {/* LOGO */}
       <img
         src={logoImg}
         alt="Mindora"
         onClick={() => navigate("/")}
         style={{
-          height: "40px",
+          height: isChatPage ? "64px" : "44px",
           cursor: "pointer",
         }}
       />
 
-      {/* LINKS */}
-      <nav
-        style={{
-          display: "flex",
-          gap: "40px",
-        }}
-      >
-        <a
-          href="#about"
+      {!isChatPage && (
+        <nav
           style={{
-            color: "#555",
-            textDecoration: "none",
+            display: "flex",
+            gap: "48px",
+            alignItems: "center",
           }}
         >
-          About
-        </a>
+          {[
+            ["About", "#about"],
+            ["How It Works", "#how-it-works"],
+            ["Resources", "#resources"],
+            ["Privacy", "#privacy"],
+          ].map(([label, hash]) => (
+            <button
+              key={hash}
+              onClick={() => handleHomeSection(hash)}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "#666666",
+                cursor: "pointer",
+                fontSize: "15px",
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+      )}
 
-        <a
-          href="#how-it-works"
-          style={{
-            color: "#555",
-            textDecoration: "none",
-          }}
-        >
-          How It Works
-        </a>
-
-        <a
-          href="#resources"
-          style={{
-            color: "#555",
-            textDecoration: "none",
-          }}
-        >
-          Resources
-        </a>
-
-        <a
-          href="#privacy"
-          style={{
-            color: "#555",
-            textDecoration: "none",
-          }}
-        >
-          Privacy
-        </a>
-      </nav>
-
-      {/* BUTTON */}
       <button
-        onClick={() => navigate("/chat")}
+        onClick={() => navigate(isChatPage ? "/" : "/chat")}
         style={{
-          backgroundColor: "#1A9E8D",
-          color: "white",
-          padding: "10px 24px",
+          backgroundColor: isChatPage ? "#FDE7E8" : "#0D9488",
+          color: isChatPage ? "#C9161D" : "#ffffff",
+          padding: isChatPage ? "20px 36px" : "14px 28px",
           borderRadius: "999px",
           border: "none",
           cursor: "pointer",
+          fontSize: isChatPage ? "24px" : "15px",
+          fontWeight: 700,
         }}
       >
-        Start Chatting
+        {isChatPage ? "End Chat" : "Start Chatting"}
       </button>
-    </header>
+    </div>
   );
 };
 

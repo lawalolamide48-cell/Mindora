@@ -1,11 +1,11 @@
-import { Message } from "../../types/chat";
+import type { Message } from "../../types/chat";
 
 interface Props {
   message: Message;
 }
 
-const ChatMessage = ({ message }: Props) => {
-  const isUser = message.sender === "user";
+const ChatBubble = ({ message }: Props) => {
+  const isUser = message.role === "user";
 
   return (
     <div
@@ -16,20 +16,20 @@ const ChatMessage = ({ message }: Props) => {
     >
       <div
         style={{
-          maxWidth: "68%",
-          padding: "18px 22px",
-          borderRadius: "24px",
-          backgroundColor: isUser ? "#1A9E8D" : "white",
-          color: isUser ? "white" : "#4B4B4B",
-          lineHeight: "1.9",
-          fontSize: "15px",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+          maxWidth: isUser ? "320px" : "760px",
+          padding: isUser ? "28px 40px" : "36px 44px",
+          borderRadius: isUser ? "48px 48px 8px 48px" : "28px",
+          backgroundColor: isUser ? "#0D9488" : "#ffffff",
+          color: isUser ? "#ffffff" : "#444444",
+          lineHeight: "1.55",
+          fontSize: "24px",
+          border: isUser ? "none" : "1px solid #D8DEDC",
         }}
       >
-        {message.text}
+        {message.content}
       </div>
     </div>
   );
 };
 
-export default ChatMessage;
+export default ChatBubble;

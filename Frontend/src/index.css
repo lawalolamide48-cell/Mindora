@@ -2,16 +2,38 @@
 @import "@fontsource/inter";
 
 * {
- html, body, #root {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  background: #EEF8F6;
-}
+  background: #ffffff;
 }
 
 body {
   color: #111111;
   font-family: "Inter", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+.mindora-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0;
 }

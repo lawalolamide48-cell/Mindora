@@ -1,35 +1,29 @@
-import SuggestionChips from "./SuggestionChips";
-
-interface Props {
-  onSend: (text: string) => void;
-}
-
-const EmptyChatState = ({ onSend }: Props) => {
+const EmptyChatState = () => {
   return (
     <div
       style={{
-        flex: 1,
+        width: "100%",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
-        padding: "40px 20px",
+        padding: "132px 24px 0",
       }}
     >
       <div
         style={{
           width: "100%",
-          maxWidth: "560px",
+          maxWidth: "980px",
           backgroundColor: "white",
           borderRadius: "32px",
-          padding: "48px 56px",
+          padding: "56px 64px",
           textAlign: "center",
-          boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
+          border: "1px solid #D8DEDC",
         }}
       >
         <h1
+          className="mindora-heading"
           style={{
-            fontSize: "30px",
-            fontWeight: 600,
+            fontSize: "42px",
+            fontWeight: 700,
             marginBottom: "16px",
             color: "#111111",
           }}
@@ -39,16 +33,14 @@ const EmptyChatState = ({ onSend }: Props) => {
 
         <p
           style={{
-            fontSize: "15px",
-            lineHeight: "1.8",
+            fontSize: "22px",
+            lineHeight: "1.6",
             color: "#7B7B7B",
-            marginBottom: "32px",
+            margin: 0,
           }}
         >
           Tell me how you're feeling. I'm here, and this is private.
         </p>
-
-        <SuggestionChips onSend={onSend} />
       </div>
     </div>
   );

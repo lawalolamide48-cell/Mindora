@@ -15,8 +15,9 @@ const SuggestionChips = ({ onSend }: Props) => {
       style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: "12px",
+        gap: "36px",
         justifyContent: "center",
+        padding: "0 24px",
       }}
     >
       {suggestions.map((item, index) => (
@@ -24,12 +25,13 @@ const SuggestionChips = ({ onSend }: Props) => {
           key={index}
           onClick={() => onSend(item)}
           style={{
-            border: "none",
+            border: "1px solid #D8DEDC",
             borderRadius: "999px",
-            padding: "12px 18px",
-            backgroundColor: "#F8F8F8",
-            color: "#444444",
-            fontSize: "14px",
+            padding: "18px 48px",
+            backgroundColor: "#ffffff",
+            color: "#1F2A2A",
+            fontSize: "22px",
+            fontWeight: 700,
             cursor: "pointer",
             transition: "0.2s",
           }}
