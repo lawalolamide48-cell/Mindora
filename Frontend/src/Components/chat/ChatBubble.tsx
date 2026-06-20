@@ -8,24 +8,8 @@ const ChatBubble = ({ message }: Props) => {
   const isUser = message.role === "user";
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: isUser ? "flex-end" : "flex-start",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: isUser ? "320px" : "760px",
-          padding: isUser ? "28px 40px" : "36px 44px",
-          borderRadius: isUser ? "48px 48px 8px 48px" : "28px",
-          backgroundColor: isUser ? "#0D9488" : "#ffffff",
-          color: isUser ? "#ffffff" : "#444444",
-          lineHeight: "1.55",
-          fontSize: "24px",
-          border: isUser ? "none" : "1px solid #D8DEDC",
-        }}
-      >
+    <div className={`chat-bubble-row ${isUser ? "chat-bubble-row--user" : ""}`}>
+      <div className={`chat-bubble ${isUser ? "chat-bubble--user" : "chat-bubble--assistant"}`}>
         {message.content}
       </div>
     </div>

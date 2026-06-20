@@ -11,30 +11,12 @@ const suggestions = [
 
 const SuggestionChips = ({ onSend }: Props) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "36px",
-        justifyContent: "center",
-        padding: "0 24px",
-      }}
-    >
+    <div className="suggestion-chips">
       {suggestions.map((item, index) => (
         <button
+          className="suggestion-chip"
           key={index}
           onClick={() => onSend(item)}
-          style={{
-            border: "1px solid #D8DEDC",
-            borderRadius: "999px",
-            padding: "18px 48px",
-            backgroundColor: "#ffffff",
-            color: "#1F2A2A",
-            fontSize: "22px",
-            fontWeight: 700,
-            cursor: "pointer",
-            transition: "0.2s",
-          }}
         >
           {item}
         </button>

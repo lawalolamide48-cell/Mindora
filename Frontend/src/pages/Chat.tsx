@@ -80,40 +80,18 @@ const Chat = () => {
   const hasMessages = messages.length > 0;
 
   return (
-    <div
-      style={{
-        minHeight: "calc(100vh - 96px)",
-        display: "flex",
-        flexDirection: "column",
-        background: "#ffffff",
-      }}
-    >
+    <div className="chat-page">
       <section
-        style={{
-          flex: "1 1 auto",
-          background:
-            "linear-gradient(180deg, #EEF8F6 0%, #EEF8F6 82%, #FFFFFF 82%)",
-        }}
+        className={`chat-stage ${
+          hasMessages ? "chat-stage--active" : "chat-stage--empty"
+        }`}
       >
         {!hasMessages ? (
           <EmptyChatState />
         ) : (
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "1640px",
-              margin: "0 auto",
-              padding: "140px 72px 96px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "88px",
-            }}
-          >
+          <div className="chat-messages">
             {messages.map((message) => (
-              <ChatBubble
-                key={message.id}
-                message={message}
-              />
+              <ChatBubble key={message.id} message={message} />
             ))}
 
             {isLoading && (
@@ -131,38 +109,23 @@ const Chat = () => {
       </section>
 
       <section
-        style={{
-          background: "#ffffff",
-          padding: hasMessages
-            ? "64px 24px 56px"
-            : "72px 24px 56px",
-        }}
+        className={`chat-composer-section ${
+          hasMessages
+            ? "chat-composer-section--active"
+            : "chat-composer-section--empty"
+        }`}
       >
         {!hasMessages && (
-          <div style={{ marginBottom: "96px" }}>
+          <div className="chat-suggestions-wrap">
             <SuggestionChips onSend={handleSend} />
           </div>
         )}
 
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "1160px",
-            margin: "0 auto",
-          }}
-        >
+        <div className="chat-composer">
           <ChatInput onSend={handleSend} />
 
-          <p
-            style={{
-              marginTop: "36px",
-              textAlign: "center",
-              color: "#808080",
-              fontSize: "18px",
-            }}
-          >
-            Mindora Is An AI Companion, Not A Substitute For
-            Professional Care.
+          <p className="chat-disclaimer">
+            Mindora Is An AI Companion, Not A Substitute For Professional Care.
           </p>
         </div>
       </section>
