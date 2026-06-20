@@ -2,6 +2,10 @@
 
 Mindora is an anonymous mental wellness chat application built with a React frontend and an Express backend. It gives users a calm space to start a private conversation, explore supportive prompts, and receive AI-assisted guidance.
 
+## Live Demo
+
+[Open Mindora](https://mindora-ai.vercel.app)
+
 ## Features
 
 - Anonymous chat experience
